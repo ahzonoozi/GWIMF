@@ -2,14 +2,14 @@ PROGRAM GWIMF
 
   IMPLICIT NONE
   INTEGER :: i,j,f,k
-  INTEGER :: nx,mx,TYPE_IGIMF
+  INTEGER :: nx,mx
   REAL, ALLOCATABLE, DIMENSION(:) :: m,dm
   REAL, ALLOCATABLE, DIMENSION(:) :: Mecl,dMecl,Meclave,m_max,IMF,logM
   REAL, ALLOCATABLE, DIMENSION(:) :: phi,IGIMF,N,NN,xx
   REAL :: N_IGIMF,N_IMF,SFR,Mecl_max,FeH,const,M_C,Mtot,M_t,xx1
   REAL :: Bt,delta,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,k1,k2,k3,k_1,k_2,a3,a_1,a_2,Mecl_u,Mecl_l,Mecl1,m_max1
 
-  CALL input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2,TYPE_IGIMF)
+  CALL input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2)
   CALL output(FeH,SFR)
 
   ALLOCATE(m(1:nx+1),dm(1:nx+1),logM(1:nx+1)) 
@@ -48,32 +48,23 @@ END
 
 
 !###################################################################################################
-subroutine input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2,TYPE_IGIMF)
+subroutine input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2)
   IMPLICIT NONE
 
      REAL SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2
-     INTEGER i,nx,mx,TYPE_IGIMF
+     INTEGER i,nx,mx
      open(10,file='input')
 
      READ(10,*)SFR,FeH
      READ(10,*)nx,mx
      READ(10,*)M_L,M_turn1,M_turn2,M_U
      READ(10,*)a_1,a_2
-     READ(10,*)TYPE_IGIMF
+     
       
-     IF(TYPE_IGIMF.EQ.3)then
+     
        alpha_1=1.30+0.5*FeH
        alpha_2=2.30+0.5*FeH
-     ENDIF
-     IF(TYPE_IGIMF.EQ.2)then
-       alpha_1=1.30
-       alpha_2=2.30
-     ENDIF
-     IF(TYPE_IGIMF.EQ.1)then
-       alpha_1=1.30
-       alpha_2=2.30
-     ENDIF
-
+     
 
      CLOSE(10)
 RETURN
