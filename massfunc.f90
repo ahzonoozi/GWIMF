@@ -9,7 +9,7 @@ SUBROUTINE massfunc(Mecl_max,nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha
   REAL :: M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,k1,k2,k3,k_1,k_2,alpha_3,a_1,a_2
   REAL :: Bt,delta,Kecl,Mecl1,m_max1
 
-  CALL input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2,TYPE_IGIMF)  
+  CALL input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2)  
   ALLOCATE(m(1:nx+1),dm(1:nx+1),logM(1:nx+1)) 
            m=0.0; dm=0.0; logM=0.0
   ALLOCATE(Mecl(1:nx+1),dMecl(1:nx+1),Meclave(1:nx+1),m_max(1:nx+1),xx(1:nx+1))
@@ -83,9 +83,7 @@ SUBROUTINE massfunc(Mecl_max,nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha
               alpha_3=2.3
            ENDIF
 
-           IF(TYPE_IGIMF.EQ.1)then
-              alpha_3=1.30
-           ENDIF
+           
 
            K1=Mecl(f)/((M_turn1**(-alpha_1+2.)-M_L**(-alpha_1+2.))/(-alpha_1+2.)+(M_turn2**(-alpha_2+2.)-&
               &M_turn1**(-alpha_2+2.))*(M_turn1**(alpha_2-alpha_1))/(-alpha_2+2.)+(m_max(f)**(-alpha_3+2.)&
