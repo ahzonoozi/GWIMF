@@ -7,7 +7,7 @@ SUBROUTINE max_mstar(Mecl1,nx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,m_
   REAL :: Bt,delta,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,alpha_3,k1,k2,k3
   REAL :: m_max1,xx1,Mecl1
 
-  CALL input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2,TYPE_IGIMF)  
+  CALL input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2)  
   ALLOCATE(m(1:nx+1),dm(1:nx+1),logM(1:nx+1)) 
            m=0.0; dm=0.0; logM=0.0
      
@@ -22,10 +22,7 @@ SUBROUTINE max_mstar(Mecl1,nx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,m_
      alpha_3=2.3
   ENDIF
 
-  IF(TYPE_IGIMF.EQ.1)then
-     alpha_3=1.30
-  ENDIF
-
+  
   M_C=0.0     
   DO j=1,400
 
