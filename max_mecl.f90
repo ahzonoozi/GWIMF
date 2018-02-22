@@ -6,7 +6,7 @@ SUBROUTINE max_mecl(nx,SFR,FeH,Mecl_max)
   REAL :: Bt,Mecl_u,Mecl_l,Kecl,SFR,Mecl_max,FeH,Mtot,M_t
 
 
-  CALL input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2,TYPE_IGIMF) 
+  CALL input(nx,mx,SFR,FeH,M_L,M_turn1,M_turn2,M_U,alpha_1,alpha_2,a_1,a_2) 
   ALLOCATE(Mecl(1:nx+1))
            Mecl=0.0
  
